@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="{% static 'js/htmx.min.js' %}" defer></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
+    {% block head %}
+        <title>My Template</title>
+    {% endblock head`}
+  </head>
+  <body>
+    {% block body %}
+        <main>
+            <h1>Welcome to My Website</h1>  
+        </main>
+    {% endblock body %}
+  </body>
+</html>
