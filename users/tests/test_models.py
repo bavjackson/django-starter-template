@@ -1,6 +1,8 @@
 import pytest
 from django.contrib.auth import get_user_model
 
+
+@pytest.mark.django_db
 def test_create_user():
     email = 'normal@user.com'
     User = get_user_model()
@@ -17,12 +19,14 @@ def test_create_user():
         # User needs to provide email and password
         User.objects.create_user()
     with pytest.raises(TypeError):
-        # Email cannot be empty
+        # Password must be provided
         User.objects.create_user(email="")
-    with pytest.raises(TypeError):
+    with pytest.raises(ValueError):
         # Email cannot be empty
         User.objects.create_user(email="", password='foo')
 
+
+@pytest.mark.django_db
 def test_create_superuser():
     email = 'admin@user.com'
     User = get_user_model()
@@ -36,7 +40,7 @@ def test_create_superuser():
     except AttributeError:
         pass
     with pytest.raises(ValueError):
-        User.objects.create_supeuser(
+        User.objects.create_superuser(
             email=email, password='foo', is_superuser=False
         )
         
